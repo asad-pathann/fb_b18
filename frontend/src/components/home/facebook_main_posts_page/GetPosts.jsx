@@ -18,20 +18,18 @@ const GetPosts = ({
   createdAt,
   postImage,
 }) => {
-
-  const [likes, setLikes] = useState([])
+  const [likes, setLikes] = useState([]);
 
   const getLikes = async () => {
-    let response = await axios.get(`http://localhost:5174/api/posts/get-reactions/${_id}`);
-    console.log(response.data)
-    setLikes(response.data)
-  }
+    let response = await axios.get(
+      `http://localhost:5174/api/posts/get-reactions/${_id}`
+    );
+    console.log(response.data);
+    setLikes(response.data);
+  };
   useEffect(() => {
-    getLikes()
-  }, [])
-
-
-
+    getLikes();
+  }, []);
 
   return (
     <>
@@ -101,8 +99,6 @@ const GetPosts = ({
                 });
 
                 return reactions.map((type, index) => {
-
-
                   const emoji = emojiMap[type];
                   if (!emoji) return null;
 
@@ -110,7 +106,7 @@ const GetPosts = ({
                     <span
                       key={type}
                       className={`relative z-${50 - index} -ml-2 animate-shake`}
-                      style={{ animationDuration: '0.5s' }}
+                      style={{ animationDuration: "0.5s" }}
                     >
                       <picture>
                         <source srcSet={emoji.webp} type="image/webp" />
@@ -127,7 +123,6 @@ const GetPosts = ({
                 });
               })()}
             </div>
-
 
             {likes?.length}
           </p>
